@@ -149,3 +149,15 @@ dialog, dd, dt {
 }
 
 .smalltext { font-size: 10pt; }
+.header,
+.setup,
+.base--ul,
+.smalltext,
+._full-width-row._full-width-row_gray,
+._container>div {
+  display: none!important;
+}
+._container>div.buttons,
+._container>div.tab-panels{
+    display: block!important;
+}

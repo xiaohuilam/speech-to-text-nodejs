@@ -184,6 +184,7 @@ export default React.createClass({
     //  * a few other things for backwards compatibility and sane defaults
     // In addition to this, it passes other service-level options along to the RecognizeStream
     // that manages the actual WebSocket connection.
+    console.log(recognizeFile);
     this.handleStream(recognizeFile(this.getRecognizeOptions({
       file,
       play: true, // play the audio out loud
@@ -406,8 +407,6 @@ export default React.createClass({
           </div>
         </div>
 
-        <h2 className="base--h2">Transcribe Audio</h2>
-
         <ul className="base--ul">
           {micBullet}
           <li className="base--li">{'Upload pre-recorded audio (.mp3, .mpeg, .wav, .flac, or .opus only).'}</li>
@@ -450,7 +449,7 @@ export default React.createClass({
                 disabled={!this.supportsSpeakerLabels()}
                 id="speaker-labels"
               />
-              <label className="base--inline-label" htmlFor="speaker-labels">
+              <label className="base--inline-label hide" htmlFor="speaker-labels">
                 Detect multiple speakers {this.supportsSpeakerLabels() ? '' : ' (Not supported on current model)'}
               </label>
             </p>
