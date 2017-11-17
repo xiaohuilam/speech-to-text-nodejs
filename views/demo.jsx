@@ -235,6 +235,20 @@ export default React.createClass({
   },
 
   handleFormattedMessage(msg) {
+    //console.log(msg.results);
+    if('undefined' == typeof window.mancheck) window.mancheck = {};
+    var counter = 0;
+    for(var i in msg.results) {
+      for(var j in msg.results[i].word_alternatives) {
+        if(msg.results[i].word_alternatives[j].alternatives[0].confidence < 0.8) counter ++;
+        else counter = 0;
+
+        if(counter >= 2) {
+          //console.log([msg.results[i].word_alternatives[j].alternatives[0].word, msg.results[i].word_alternatives[j].alternatives[0].confidence]); 
+          window.mancheck[msg.results[i].word_alternatives[(j-1)].alternatives[0].word+' '+msg.results[i].word_alternatives[j].alternatives[0].word] = msg.results[i];
+        }
+      }
+    }
     this.setState({ formattedMessages: this.state.formattedMessages.concat(msg) });
   },
 
@@ -471,23 +485,9 @@ export default React.createClass({
 
 
         <div className="flex buttons">
-
-          <button className={micButtonClass} onClick={this.handleMicClick}>
-            <Icon type={this.state.audioSource === 'mic' ? 'stop' : 'microphone'} fill={micIconFill} /> Record Audio
-          </button>
-
           <button className={buttonClass} onClick={this.handleUploadClick}>
             <Icon type={this.state.audioSource === 'upload' ? 'stop' : 'upload'} /> Upload Audio File
           </button>
-
-          <button className={buttonClass} onClick={this.handleSample1Click}>
-            <Icon type={this.state.audioSource === 'sample-1' ? 'stop' : 'play'} /> Play Sample 1
-          </button>
-
-          <button className={buttonClass} onClick={this.handleSample2Click}>
-            <Icon type={this.state.audioSource === 'sample-2' ? 'stop' : 'play'} /> Play Sample 2
-          </button>
-
         </div>
 
         {err}

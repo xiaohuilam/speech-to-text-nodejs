@@ -158,6 +158,7 @@ dialog, dd, dt {
   display: none!important;
 }
 ._container>div.buttons,
-._container>div.tab-panels{
+._container>div.tab-panels,
+.arrow-box .base--ul{
     display: block!important;
 }

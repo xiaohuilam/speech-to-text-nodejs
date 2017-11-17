@@ -109,34 +109,6 @@ export default React.createClass({
 
       return (
         <div className="jsonview">
-          <div className="options">
-            Show: &nbsp;
-            <RadioGroup
-              tabStyle
-              name="input-name"
-              selectedValue={this.state.showRaw
-                ? RAW
-                : FORMATTED}
-              onChange={this.handleShowChange}
-            >
-              <Radio value={RAW}>WebSocket traffic</Radio>
-              <Radio value={FORMATTED}>Formatted results from the SDK</Radio>
-            </RadioGroup>
-            <input
-              className="base--checkbox"
-              type="checkbox"
-              checked={!this.state.interim}
-              onChange={this.handleInterimChange}
-              id="interim"
-            />
-            <label className="base--inline-label" htmlFor="interim">
-              Hide interim results
-            </label>
-          </div>
-          <hr className="base--hr" />
-          <div className="results">
-            {output}
-          </div>
         </div>
       );
     } catch (ex) {
